@@ -1,0 +1,32 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: take_home_development
+
+test:
+  <<: *default
+  database: take_home_test
+#
+# development:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: take_home_development
+#   pool: 5
+#   username: postgres
+#   password:
+#
+# test:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: take_home_test
+#   pool: 5
+#   username: postgres
+#   password:
+

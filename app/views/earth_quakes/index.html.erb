@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Earth Quakes</h1>
+<%= form_tag('/', method: :get) do %>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <div class="row collapse prefix-round">
+        <div class="small-3 columns">
+        </div>
+        <div class="small-9 columns">
+          <label>Start Date      </label>
+          <%= text_field_tag 'start_date', params[:start_date].try(:to_date), class: 'datepicker' %>
+        </div>
+      </div>
+    </div>
+    <div class="large-6 columns">
+      <div class="row collapse postfix-round">
+        <div class="small-9 columns">
+          <label>End Date </label>
+          <%= text_field_tag 'end_date', params[:end_date].try(:to_date), class: 'datepicker' %>
+        </div>
+        <div class="small-3 columns">
+          <%= submit_tag "Search", class: 'button' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Place</th>
+      <th>Magnitude</th>
+      <th>Distance</th>
+      <th>Miles Traveled</th>
+      <th>(< 0 == felt in city)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @earth_quakes.each do |earth_quake| %>
+    
+      <tr>
+        <td><%= earth_quake.time %></td>
+        <td><%= earth_quake.city %></td>
+        <td><%= earth_quake.state %></td>
+        <td><%= earth_quake.place %></td>
+        <td><%= earth_quake.mag %></td>
+        <td><%= earth_quake.distance %></td>
+        <td><%= earth_quake.miles_traveled %></td>
+        <td><%= earth_quake.felt %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
